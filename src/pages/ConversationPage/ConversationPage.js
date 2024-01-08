@@ -80,7 +80,7 @@ const ConversationPage = () => {
   };
 
   const connect = () => {
-    let Sock = new SockJS("https://dungdt.id.vn/ws");
+    let Sock = new SockJS("https://dungdt.id.vn:443/ws");
     stompClient = over(Sock);
     stompClient.connect({}, onConnected, onError);
     console.log("connected to", state.item.topic);
