@@ -44,7 +44,7 @@ const ConversationPage = () => {
   useEffect(() => {
     setIsOwner(state.item.isOwner);
     setIsAuto(state.item.isAuto);
-  }, []);
+  }, [state]);
 
   const handleTakePhoto = async (e) => {
     e.preventDefault();
@@ -80,7 +80,8 @@ const ConversationPage = () => {
   };
 
   const connect = () => {
-    let Sock = new SockJS("https://dungdt.id.vn:443/ws");
+    let Sock = new SockJS("wss://dungdt.id.vn:443/ws");
+    // let Sock = new SockJS("http://localhost:8080/ws");
     stompClient = over(Sock);
     stompClient.connect({}, onConnected, onError);
     console.log("connected to", state.item.topic);
