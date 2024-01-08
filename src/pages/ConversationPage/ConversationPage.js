@@ -96,7 +96,7 @@ const ConversationPage = () => {
   const onMessageReceived = (payload) => {
     var payloadData = JSON.parse(payload.body);
     console.log(payloadData);
-    setMessages([...messages, payloadData]);
+    setMessages((prev) => [...prev, payloadData]);
   };
 
   const onError = (err) => {
@@ -114,13 +114,13 @@ const ConversationPage = () => {
           {messages.length > 0 &&
             messages.map((message) => (
               <div key={message.title} ref={scrollRef}>
-                <Message key={message.url} message={message} />
+                <Message message={message} />
               </div>
             ))}
         </div>
 
         <div className="chat-box-bottom">
-          {!isAuto && (
+          <div>
             <button
               className="bottom-button"
               onClick={(e) => handleTakePhoto(e)}
@@ -128,31 +128,47 @@ const ConversationPage = () => {
               <CameraIcon />
               <span>Chụp ảnh</span>
             </button>
-          )}
+          </div>
+
           {isOwner && !isAuto ? (
-            <form
-              onSubmit={handleSubmit(onSendMinute)}
-              className="flex gap-2 items-center"
-            >
-              <p className="error">{errors.minutes?.message}</p>
-              <input
-                type="number"
-                placeholder="Minute"
-                className="w-36 border-gray-400 focus:outline-none"
-                {...register("minutes", {
-                  required: { value: true, message: "Minute is required" },
-                })}
-              />
-              <button className="w-fit text-blue-400 hover:text-blue-500 font-semibold">
-                <SendIcon />
-              </button>
-            </form>
+            <div>
+              <form
+                onSubmit={handleSubmit(onSendMinute)}
+                className="flex gap-2 items-center"
+              >
+                <p className="error">{errors.minutes?.message}</p>
+                <input
+                  type="number"
+                  placeholder="Minute"
+                  className="w-36 border-gray-400 focus:outline-none"
+                  {...register("minutes", {
+                    required: { value: true, message: "Minute is required" },
+                  })}
+                />
+                <button className="w-fit text-blue-400 hover:text-blue-500 font-semibold">
+                  <SendIcon />
+                </button>
+              </form>
+            </div>
           ) : (
-            <div></div>
+            ""
+          )}
+
+          {isOwner && isAuto ? (
+            <div>
+              <button
+                onClick={(e) => handleStopAuto(e)}
+                className="w-fit px-3 py-2 bg-red-400 hover:bg-red-500 text-white font-semibold"
+              >
+                Stop auto sending
+              </button>
+            </div>
+          ) : (
+            ""
           )}
         </div>
 
-        {isOwner && isAuto ? (
+        {/* {isOwner && isAuto ? (
           <div className="chat-box-bottom">
             <button
               onClick={(e) => handleStopAuto(e)}
@@ -163,7 +179,7 @@ const ConversationPage = () => {
           </div>
         ) : (
           <div></div>
-        )}
+        )} */}
       </div>
     </ChatLayout>
   );
