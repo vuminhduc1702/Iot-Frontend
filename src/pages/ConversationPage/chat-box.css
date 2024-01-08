@@ -1,0 +1,31 @@
+.chat-box {
+  @apply flex flex-col w-full h-screen;
+}
+
+.chat-box-header {
+  @apply basis-1/12 flex items-center gap-5 p-3 shadow w-full bg-white;
+}
+
+.header-img {
+  @apply flex items-center justify-center uppercase bg-red-200 text-2xl h-12 w-12 rounded-full;
+}
+
+.header-name {
+  @apply text-2xl font-bold;
+}
+
+.chat-box-body {
+  @apply flex-1 overflow-y-scroll;
+}
+
+.messenger {
+  @apply flex-1 px-4 py-3 overflow-y-scroll;
+}
+
+.chat-box-bottom {
+  @apply basis-1/12 flex items-center justify-between p-3 shadow w-full border-t border-gray-200 bg-white;
+}
+
+.bottom-button {
+  @apply flex items-center gap-2 w-fit bg-blue-400 hover:bg-blue-500 rounded-lg px-3 py-2 text-white font-semibold;
+}

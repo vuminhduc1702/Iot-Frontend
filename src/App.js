@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import HomePage from "./pages/HomePage/HomePage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import SignupPage from "./pages/SignupPage/SignupPage";
+import ChatPage from "./pages/ChatPage/ChatPage";
+import ConversationPage from "./pages/ConversationPage/ConversationPage";
+import AdminPage from "./pages/AdminPage/AdminPage";
+import NewDevicePage from "./pages/NewDevicePage/NewDevicePage";
+import NewUserPage from "./pages/NewUserPage/NewUserPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route path={"/"} element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/chat" element={<ChatPage />} />
+        <Route path="/chat/:iotClientId" element={<ConversationPage />} />
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin/new-device" element={<NewDevicePage />} />
+        <Route path="/admin/device/:iotClientId" element={<NewUserPage />} />
+      </Routes>
     </div>
   );
 }

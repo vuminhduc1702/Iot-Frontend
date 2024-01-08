@@ -1,0 +1,23 @@
+.message {
+  @apply flex flex-col gap-2 my-5 p-3 bg-gray-200 rounded-lg w-fit;
+}
+
+.message-top {
+  @apply text-white inline-block max-w-md rounded-2xl;
+}
+
+.message-bottom {
+  @apply text-base ml-auto font-semibold;
+}
+
+.message-text {
+  @apply text-xl;
+}
+
+.message.own {
+  @apply items-start;
+}
+
+/* .message-bottom {
+  @apply ml-auto;
+} */

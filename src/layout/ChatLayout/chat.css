@@ -1,0 +1,40 @@
+.chat {
+  @apply flex h-screen;
+}
+
+.chat-list {
+  @apply basis-1/3 xl:basis-1/4 flex flex-col h-screen;
+}
+
+.back-btn {
+  @apply w-full h-20 flex gap-2 items-center px-6 text-xl font-bold hover:underline border-b border-gray-200;
+}
+
+.list {
+  @apply flex-1 overflow-y-scroll;
+}
+
+.chat-inbox {
+  @apply flex-1;
+}
+
+/* .menu {
+  @apply basis-1/3;
+}
+
+.menuSearch {
+  @apply w-full m-auto border-none bg-gray-200 rounded-full focus:outline-none;
+}
+
+.box {
+  @apply flex-1;
+}
+
+.menuWrapper,
+.boxWrapper {
+  @apply p-3 h-full;
+}
+
+.menuWrapper {
+  @apply border-r border-gray-200;
+} */

@@ -1,0 +1,19 @@
+.chatItem {
+  @apply flex items-center gap-3 px-3 py-4 rounded-lg cursor-pointer hover:bg-gray-200;
+}
+
+.chatItemInfo {
+  @apply flex flex-col items-start;
+}
+
+.chatItemImg {
+  @apply flex items-center justify-center w-12 h-12 rounded-full bg-red-200 text-2xl;
+}
+
+.chatItemName {
+  @apply text-xl font-semibold overflow-hidden;
+}
+
+.chatItemModel {
+  @apply text-lg overflow-hidden;
+}

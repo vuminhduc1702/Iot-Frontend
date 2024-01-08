@@ -1,0 +1,19 @@
+.menu {
+  @apply flex flex-col pt-3 w-full h-screen border-r border-gray-200;
+}
+
+.menu-search-wrapper {
+  @apply h-fit mx-4 mb-4;
+}
+
+.menu-search {
+  @apply w-full border-none bg-gray-200 rounded-full text-xl focus:outline-none;
+}
+
+.list {
+  @apply flex-1 px-2 overflow-y-scroll;
+}
+
+.active {
+  @apply bg-gray-200;
+}
