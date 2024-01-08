@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AuthContextProvider>
     <React.StrictMode>
-      <BrowserRouter basename="/fe">
+      <BrowserRouter>
         <App />
         <Toaster
           position="bottom-right"

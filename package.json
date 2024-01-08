@@ -1,6 +1,5 @@
 {
   "name": "iot-frontend-cra",
-  "homepage": "/fe",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
