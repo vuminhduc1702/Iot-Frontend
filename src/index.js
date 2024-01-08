@@ -5,13 +5,12 @@ import App from "./App";
 import { Toaster } from "react-hot-toast";
 import { AuthContextProvider } from "./context/AuthContext";
 import { BrowserRouter } from "react-router-dom";
-import NavigationBar from "./components/NavigationBar/NavigationBar";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AuthContextProvider>
     <React.StrictMode>
-      <BrowserRouter>
+      <BrowserRouter basename="/fe">
         <App />
         <Toaster
           position="bottom-right"
