@@ -81,7 +81,6 @@ const ConversationPage = () => {
 
   const connect = () => {
     let Sock = new SockJS("https://dungdt.id.vn/ws");
-    // let Sock = new SockJS("http://localhost:8080/ws");
     stompClient = over(Sock);
     stompClient.connect({}, onConnected, onError);
     console.log("connected to", state.item.topic);
@@ -167,19 +166,6 @@ const ConversationPage = () => {
             ""
           )}
         </div>
-
-        {/* {isOwner && isAuto ? (
-          <div className="chat-box-bottom">
-            <button
-              onClick={(e) => handleStopAuto(e)}
-              className="w-fit px-3 py-2 bg-red-400 hover:bg-red-500 text-white font-semibold"
-            >
-              Stop auto sending
-            </button>
-          </div>
-        ) : (
-          <div></div>
-        )} */}
       </div>
     </ChatLayout>
   );

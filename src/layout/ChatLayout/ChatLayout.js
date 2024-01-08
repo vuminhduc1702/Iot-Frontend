@@ -1,5 +1,4 @@
 import "./chat.css";
-import ChatList from "../../components/ChatList/ChatList";
 import ChatItem from "../../components/ChatItem/ChatItem";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,9 +16,9 @@ const ChatLayout = ({ children }) => {
         const response = await UserService.getDeviceListOfUser();
         setChatList(response.data);
       } catch (err) {
-        // toast.error("Unauthorized");
-        // navigate("/");
         console.log(err);
+        toast.error("Unauthorized");
+        navigate("/");
       }
     }
     fetch();

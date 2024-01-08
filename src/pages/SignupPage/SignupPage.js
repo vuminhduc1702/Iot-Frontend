@@ -1,18 +1,23 @@
 import { useForm } from "react-hook-form";
 import AuthenticationService from "../../services/AuthenticationService/AuthenticationService";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MainLayout from "../../layout/MainLayout/MainLayout";
+import toast from "react-hot-toast";
 
 const SignupPage = () => {
+  const navigate = useNavigate();
   const form = useForm();
   const { register, control, handleSubmit, formState } = form;
   const { errors } = formState;
 
-  const onSubmit = (data) => {
-    console.log(data);
-    AuthenticationService.register(data).then((response) => {
-      console.log(response.data);
-    });
+  const onSubmit = async (data) => {
+    try {
+      const response = await AuthenticationService.register(data);
+      toast.success("Successfully create a new account");
+      navigate("/login");
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   return (
