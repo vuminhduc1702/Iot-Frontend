@@ -3,6 +3,7 @@ import AdminService from "../../services/AdminService/AdminService";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import MainLayout from "../../layout/MainLayout/MainLayout";
+import ExpiredDeviceList from "../../components/ExpiredDeviceList/ExpiredDeviceList";
 
 const AdminPage = () => {
   const [deviceList, setDeviceList] = useState([]);
@@ -53,7 +54,7 @@ const AdminPage = () => {
         <div>
           <label className="text-xl font-bold">Device List</label>
           {deviceList.length > 0 ? (
-            <div className="flex flex-col border border-gray-300 h-96 rounded-lg mt-4">
+            <div className="flex flex-col border border-gray-300 h-fit max-h-96 rounded-lg mt-4">
               <div className="flex w-full h-16 items-center justify-between border-b border-gray-300 px-5 py-3 bg-gray-300 text-xl font-bold">
                 <h1 className="basis-1/5">Device ID</h1>
                 <h1 className="flex-1">Device Name</h1>
@@ -66,7 +67,7 @@ const AdminPage = () => {
                   <div className="flex w-full items-center justify-between border-b border-gray-300 px-5 py-3 text-lg font-semibold">
                     <h1 className="basis-1/5">{device.iotClientId}</h1>
                     <h1 className="flex-1">{device.iotClientName}</h1>
-                    <h1 className="basis-1/3">{device.ownerEmail}</h1>
+                    <h1 className="basis-1/3">{device.userEmail}</h1>
                     <Link
                       to={`/admin/device/${device.iotClientId}`}
                       className="basis-1/6 flex justify-end"
@@ -86,39 +87,12 @@ const AdminPage = () => {
           )}
         </div>
 
-        <div>
-          <label className="text-xl font-bold">Expired Device List</label>
-          {expiredDeviceList.length > 0 ? (
-            <div className="flex flex-col border border-gray-300 h-96 rounded-lg mt-4">
-              <div className="flex w-full h-16 items-center justify-between border-b border-gray-300 px-5 py-3 bg-gray-300 text-xl font-bold">
-                <h1>Device ID</h1>
-                <h1>Device Name</h1>
-                <h1>Owner Email</h1>
-                <h1>Day to expired</h1>
-                <h1>Refresh Token</h1>
-              </div>
+        <label className="text-xl font-bold">Expired Device List</label>
 
-              <div className="flex flex-col flex-1 overflow-y-auto h-full">
-                {expiredDeviceList.map((device) => (
-                  <div className="flex w-full items-center justify-between border-b border-gray-300 px-5 py-3 text-lg font-semibold">
-                    <h1>{device.iotClientId}</h1>
-                    <h1>{device.iotClientName}</h1>
-                    <h1>{device.ownerEmail}</h1>
-                    <h1>{device.dayExpired}</h1>
-                    <button
-                      className="px-3 py-1 rounded-lg bg-blue-400 hover:bg-blue-500 hover:text-white text-white"
-                      onClick={(e) => refreshToken(e, device.iotClientId)}
-                    >
-                      Refresh
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <h1 className="text-lg pt-2 pl-2">No device is about to expired</h1>
-          )}
-        </div>
+        <ExpiredDeviceList
+          expiredDeviceList={expiredDeviceList}
+          fetch={fetch}
+        />
       </div>
     </MainLayout>
   );

@@ -5,14 +5,14 @@ import BackIcon from "../../assets/icons/BackIcon";
 import { Link } from "react-router-dom";
 import AdminService from "../../services/AdminService/AdminService";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import ConfirmModal from "../../components/ConfirmModal/ConfirmModal";
 
 const NewDevicePage = () => {
   const [userList, setUserList] = useState([]);
-  const navigate = useNavigate();
+  const [deviceInfo, setDeviceInfo] = useState(null);
   const form = useForm();
-  const { register, control, handleSubmit, formState } = form;
-  const { errors } = formState;
+  const { register, control, handleSubmit, formState, reset } = form;
+  const { errors, isSubmitSuccessful } = formState;
 
   useEffect(() => {
     AdminService.getUserList().then((response) => {
@@ -20,11 +20,17 @@ const NewDevicePage = () => {
     });
   }, []);
 
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
+
   const onSubmit = async (data) => {
     try {
       const response = await AdminService.addNewDevice(data);
-      toast.success(response.status);
-      navigate("/admin");
+      document.getElementById("my_modal_1").showModal();
+      setDeviceInfo(response.data);
     } catch (err) {
       toast.error(err);
     }
@@ -103,6 +109,9 @@ const NewDevicePage = () => {
             )}
           </div>
         </form>
+      </div>
+      <div id="my-modal-1">
+        <ConfirmModal deviceInfo={deviceInfo} />
       </div>
     </>
   );
