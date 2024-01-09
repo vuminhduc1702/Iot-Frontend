@@ -121,7 +121,7 @@ const ConversationPage = () => {
         <div className="chat-box-bottom">
           <div>
             <button
-              className="bottom-button"
+              className="btn bottom-button"
               onClick={(e) => handleTakePhoto(e)}
             >
               <CameraIcon />
@@ -139,7 +139,7 @@ const ConversationPage = () => {
                 <input
                   type="number"
                   placeholder="Minute"
-                  className="w-36 border-gray-400 focus:outline-none"
+                  className="input input-bordered w-36 border-gray-400 focus:outline-none"
                   {...register("minutes", {
                     required: { value: true, message: "Minute is required" },
                   })}

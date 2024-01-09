@@ -44,7 +44,7 @@ const NewDevicePage = () => {
       </div>
       <div className="new-device">
         <form onSubmit={handleSubmit(onSubmit)} className="form">
-          <button className="submit-btn">Save new device</button>
+          <button className="btn submit-btn">Save new device</button>
           <div className="field">
             <label className="font-bold">Device name:</label>
             <div className="field-input">
@@ -78,29 +78,56 @@ const NewDevicePage = () => {
           <div>
             <label className="text-xl font-bold">Owner:</label>
             {userList.length > 0 ? (
-              <div className="flex flex-col border border-gray-300 h-96 rounded-lg mt-4">
-                <div className="flex w-full h-16 items-center justify-between border-b border-gray-300 px-5 py-3 bg-gray-300 text-xl font-bold">
-                  <h1 className="basis-1/4">Owner</h1>
-                  <h1 className="basis-1/4">User ID</h1>
-                  <h1 className="flex-1">User Email</h1>
-                </div>
+              // <div className="flex flex-col border border-gray-300 h-96 rounded-lg mt-4">
+              //   <div className="flex w-full h-16 items-center justify-between border-b border-gray-300 px-5 py-3 bg-gray-300 text-xl font-bold">
+              //     <h1 className="basis-1/4">Owner</h1>
+              //     <h1 className="basis-1/4">User ID</h1>
+              //     <h1 className="flex-1">User Email</h1>
+              //   </div>
 
-                <div className="flex flex-col flex-1 overflow-y-auto h-full">
-                  {userList.map((user) => (
-                    <div className="flex w-full items-center justify-between border-b border-gray-300 px-5 py-3 text-lg font-semibold">
-                      <div className="basis-1/4">
-                        <input
-                          type="radio"
-                          value={user.userId}
-                          className="h-6 w-6"
-                          {...register("userId")}
-                        />
-                      </div>
-                      <h1 className="basis-1/4">{user.userId}</h1>
-                      <h1 className="flex-1">{user.userEmail}</h1>
-                    </div>
-                  ))}
-                </div>
+              //   <div className="flex flex-col flex-1 overflow-y-auto h-full">
+              //     {userList.map((user) => (
+              //       <div className="flex w-full items-center justify-between border-b border-gray-300 px-5 py-3 text-lg font-semibold">
+              //         <div className="basis-1/4">
+              //           <input
+              //             type="radio"
+              //             className="h-6 w-6"
+              //             value={user.userId}
+              //             {...register("userId")}
+              //           />
+              //         </div>
+              //         <h1 className="basis-1/4">{user.userId}</h1>
+              //         <h1 className="flex-1">{user.userEmail}</h1>
+              //       </div>
+              //     ))}
+              //   </div>
+              // </div>
+              <div className="overflow-x-auto overflow-y-scroll h-96 mt-4">
+                <table className="table text-lg table-pin-rows">
+                  <thead>
+                    <tr className="bg-gray-200 text-lg">
+                      <th>Owner</th>
+                      <th>User ID</th>
+                      <th>User Email</th>
+                    </tr>
+                  </thead>
+                  <tbody className="">
+                    {userList.map((user) => (
+                      <tr>
+                        <th>
+                          <input
+                            type="radio"
+                            className="h-6 w-6"
+                            value={user.userId}
+                            {...register("userId")}
+                          />
+                        </th>
+                        <th>{user.userId}</th>
+                        <th>{user.userEmail}</th>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             ) : (
               <h1 className="text-lg pt-2 pl-2">

@@ -1,0 +1,19 @@
+.active-tabs {
+  @apply bg-white border-t border-x border-gray-500;
+}
+
+.tabs {
+  @apply text-xl font-semibold text-center p-4 cursor-pointer;
+}
+
+.content {
+  @apply p-5 w-full h-full hidden;
+}
+
+.active-content {
+  @apply block;
+}
+
+.tab {
+  @apply bg-gray-200 text-lg font-semibold;
+}

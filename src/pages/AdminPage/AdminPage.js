@@ -2,11 +2,14 @@ import { Link, useNavigate } from "react-router-dom";
 import AdminService from "../../services/AdminService/AdminService";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import "./admin-page.css";
 import MainLayout from "../../layout/MainLayout/MainLayout";
 import ExpiredDeviceList from "../../components/ExpiredDeviceList/ExpiredDeviceList";
+import DeviceList from "../../components/DeviceList/DeviceList";
 
 const AdminPage = () => {
   const [deviceList, setDeviceList] = useState([]);
+  const [toggle, setToggle] = useState(1);
   const navigate = useNavigate();
   const [expiredDeviceList, setExpiredDeviceList] = useState([]);
   useEffect(() => {
@@ -43,7 +46,7 @@ const AdminPage = () => {
 
   return (
     <MainLayout>
-      <div className="flex flex-col gap-6 w-5/6 mt-10 m-auto">
+      {/* <div className="flex flex-col gap-6 w-5/6 mt-10 m-auto">
         <Link
           to={"/admin/new-device"}
           className="bg-green-400 hover:bg-green-500 font-bold text-white text-lg w-fit px-3 py-1 rounded-lg"
@@ -92,6 +95,47 @@ const AdminPage = () => {
           expiredDeviceList={expiredDeviceList}
           fetch={fetch}
         />
+      </div> */}
+      {/* <div className="grid grid-cols-2 justify-center items-center mb-5 bg-gray-100">
+        <div
+          className={toggle === 1 ? "tabs active-tabs" : "tabs"}
+          onClick={() => setToggle(1)}
+        >
+          Device list
+        </div>
+        <div
+          className={toggle === 2 ? "tabs active-tabs" : "tabs"}
+          onClick={() => setToggle(2)}
+        >
+          Expired device list
+        </div>
+      </div> */}
+      <div role="tablist" className="tabs tabs-lifted">
+        <a
+          role="tab"
+          className={toggle === 1 ? "tab tab-active" : "tab"}
+          onClick={() => setToggle(1)}
+        >
+          Device list
+        </a>
+        <a
+          role="tab"
+          className={toggle === 2 ? "tab tab-active" : "tab"}
+          onClick={() => setToggle(2)}
+        >
+          Expired device list
+        </a>
+      </div>
+      <div className="content-tabs">
+        <div className={toggle === 1 ? "content active-content" : "content"}>
+          <DeviceList deviceList={deviceList} />
+        </div>
+        <div className={toggle === 2 ? "content active-content" : "content"}>
+          <ExpiredDeviceList
+            expiredDeviceList={expiredDeviceList}
+            fetch={fetch}
+          />
+        </div>
       </div>
     </MainLayout>
   );

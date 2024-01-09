@@ -1,9 +1,9 @@
 .chat-box {
-  @apply flex flex-col w-full h-screen;
+  @apply flex flex-col w-full h-full;
 }
 
 .chat-box-header {
-  @apply basis-1/12 flex items-center gap-5 p-3 shadow w-full bg-white;
+  @apply basis-1/12 flex items-center gap-5 p-3 border-b border-gray-200 w-full bg-white;
 }
 
 .header-img {
@@ -23,7 +23,7 @@
 }
 
 .chat-box-bottom {
-  @apply basis-1/12 flex items-center justify-between p-3 shadow w-full border-t border-gray-200 bg-white;
+  @apply basis-1/12 flex items-center justify-between p-3  w-full border-t border-gray-200 bg-white;
 }
 
 .bottom-button {

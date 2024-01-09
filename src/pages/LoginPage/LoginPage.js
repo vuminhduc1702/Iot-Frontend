@@ -38,19 +38,19 @@ const LoginPage = () => {
 
   return (
     <MainLayout>
-      <div className="flex flex-col justify-center items-center mt-8">
-        <h1 className="font-bold my-4">Login</h1>
+      <div className="flex flex-col justify-center items-center h-full">
+        <h1 className="font-bold mb-4 text-2xl">Login your account</h1>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col gap-2"
           noValidate
         >
           <input
-            className="ipt w-96 font-bold"
+            className="input input-bordered w-96 max-w-md"
             type="email"
             placeholder="Email"
             {...register("email", {
-              required: { value: true, message: "email is required" },
+              required: { value: true, message: "Email is required" },
               pattern: {
                 value:
                   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
@@ -61,16 +61,16 @@ const LoginPage = () => {
           <p className="error">{errors.email?.message}</p>
 
           <input
-            className="ipt w-96 font-bold"
+            className="input input-bordered w-96 max-w-md"
             type="password"
             placeholder="Password"
             {...register("password", {
-              required: { value: true, message: "password is required" },
+              required: { value: true, message: "Password is required" },
             })}
           />
           <p className="error">{errors.password?.message}</p>
           <div className="flex flex-col justify-center items-center pb-4 border-b border-gray-300">
-            <button className="my-4 bg-black w-96 py-2 text-white font-bold">
+            <button className="btn my-4 bg-black w-96 py-2 text-white font-bold">
               Log in
             </button>
           </div>

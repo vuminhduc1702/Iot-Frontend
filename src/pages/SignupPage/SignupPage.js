@@ -22,15 +22,15 @@ const SignupPage = () => {
 
   return (
     <MainLayout>
-      <div className="flex flex-col justify-center items-center mt-8">
-        <h1 className="font-bold my-4">Sign up</h1>
+      <div className="flex flex-col justify-center items-center h-full">
+        <h1 className="font-bold mb-4 text-2xl">Create a new account</h1>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col gap-2"
           noValidate
         >
           <input
-            className="ipt w-96 font-bold"
+            className="input input-bordered w-96 max-w-md"
             type="text"
             placeholder="First name"
             {...register("firstName", {
@@ -39,7 +39,7 @@ const SignupPage = () => {
           />
           <p className="error">{errors.firstName?.message}</p>
           <input
-            className="ipt w-96 font-bold"
+            className="input input-bordered w-96 max-w-md"
             type="text"
             placeholder="Last name"
             {...register("lastName", {
@@ -49,7 +49,7 @@ const SignupPage = () => {
           <p className="error">{errors.lastName?.message}</p>
 
           <input
-            className="ipt w-96 font-bold"
+            className="input input-bordered w-96 max-w-md"
             type="email"
             placeholder="Email"
             {...register("email", {
@@ -64,7 +64,7 @@ const SignupPage = () => {
           <p className="error">{errors.email?.message}</p>
 
           <input
-            className="ipt w-96 font-bold"
+            className="input input-bordered w-96 max-w-md"
             type="password"
             placeholder="Password"
             {...register("password", {
@@ -94,7 +94,7 @@ const SignupPage = () => {
             </label>
           </div>
           <div className=" flex flex-col justify-center items-center w-96">
-            <button className="my-4 bg-black w-full py-2 text-white font-bold">
+            <button className="btn my-4 bg-black w-96 py-2 text-white font-bold">
               Sign up
             </button>
             <span className="mt-4 py-3 w-full text-center border-t border-gray-300">

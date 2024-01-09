@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import UserService from "../../services/UserService/UserService";
 import BackIcon from "../../assets/icons/BackIcon";
+import MainLayout from "../MainLayout/MainLayout";
 
 const ChatLayout = ({ children }) => {
   const [chatList, setChatList] = useState([]);
@@ -25,13 +26,13 @@ const ChatLayout = ({ children }) => {
   }, []);
 
   return (
-    <div className="chat">
-      <div className="chat-list">
-        <div className="back-btn">
-          <BackIcon />
-          <Link to={"/"}>Back to home page</Link>
-        </div>
-        <div className="list">
+    <MainLayout>
+      <div className="chat">
+        <div className="chat-list">
+          {/* <div className="back-btn">
+            <BackIcon />
+            <Link to={"/"}>Back to home page</Link>
+          </div> */}
           {chatList.length > 0 &&
             chatList.map((chat) => (
               <div key={chat.iotClientId}>
@@ -39,9 +40,9 @@ const ChatLayout = ({ children }) => {
               </div>
             ))}
         </div>
+        <div className="chat-inbox">{children}</div>
       </div>
-      <div className="chat-inbox">{children}</div>
-    </div>
+    </MainLayout>
   );
 };
 

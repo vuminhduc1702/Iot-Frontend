@@ -10,7 +10,8 @@ export function AuthContextProvider({ children }) {
     const accessToken = localStorage.getItem("accessToken");
     return accessToken ? (validateJwt(accessToken) ? true : false) : false;
   });
-  const [role, setRole] = useState(0);
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState();
 
   console.log(role);
 
@@ -38,11 +39,13 @@ export function AuthContextProvider({ children }) {
   function checkRole(jwtToken) {
     try {
       const decoded = jwtDecode(jwtToken);
+      const email = decoded.sub;
+      setEmail(email);
       const role = decoded.role;
       if (role.includes("ROLE_ADMIN")) {
         setRole(1);
       } else {
-        setRole(0);
+        setRole(2);
       }
     } catch (err) {
       toast.error(err);
@@ -54,6 +57,7 @@ export function AuthContextProvider({ children }) {
       value={{
         isAuthed,
         role,
+        email,
         setIsAuthed,
         setRole,
         checkRole,

@@ -4,7 +4,7 @@ import "./message.css";
 const Message = ({ message }) => {
   return (
     <div className="message own">
-      <div className="message-top">
+      <div className="message-top chat-bubble">
         <img src={message.url} alt="Image" />
       </div>
       <div className="message-bottom">Sended on {message.dateCreated}</div>

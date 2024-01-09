@@ -2,13 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+html {
+  font-family: "Roboto", sans-serif;
+  @apply text-lg;
+}
+
+.btn {
+  @apply hover:bg-gray-300;
+}
+
 input {
   @apply border border-black px-3 py-2 rounded-lg;
 }
 
-button {
+/* button {
   @apply rounded-lg;
-}
+} */
 
 .error {
   @apply text-red-600;
