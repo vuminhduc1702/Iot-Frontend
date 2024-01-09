@@ -88,7 +88,6 @@ const AdminPage = () => {
         </div>
 
         <label className="text-xl font-bold">Expired Device List</label>
-
         <ExpiredDeviceList
           expiredDeviceList={expiredDeviceList}
           fetch={fetch}
