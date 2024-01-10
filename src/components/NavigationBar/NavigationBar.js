@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./navigation-bar.css";
-import ChatIcon from "../../assets/icons/ChatIcon";
 import { AuthContext } from "../../context/AuthContext";
 import LogoutModal from "../LogoutModal/LogoutModal";
 
@@ -19,31 +18,10 @@ const NavigationBar = () => {
   return (
     <div className="navbar px-3">
       <div className="flex-1">
-        {/* <a className="btn btn-ghost text-xl">daisyUI</a> */}
         <Link to={"/"} className="btn-ghost w-32 h-auto">
           <img src={require("../../assets/logo.jpg")} alt="HUST" />
         </Link>
       </div>
-
-      {/* {isAuthed && (
-        <div className="flex gap-8 items-center">
-          {role === 1 && (
-            <div>
-              <Link to={"/admin"}>Admin</Link>
-            </div>
-          )}
-          {role === 0 && (
-            <div>
-              <Link to={"/chat"}>
-                <ChatIcon />
-              </Link>
-            </div>
-          )}
-          <button className="btn" onClick={(e) => handleLogout(e)}>
-            Logout
-          </button>
-        </div>
-      )} */}
 
       {!isAuthed && (
         <div className="flex gap-2">
@@ -101,48 +79,6 @@ const NavigationBar = () => {
       )}
     </div>
   );
-  // (
-  // <div className="navbar">
-  //   <div className="flex items-center justify-center">
-  //     <div className="logo">
-  //       <Link to={"/"}>
-  //         <img src={require("../../assets/logo.jpg")} alt="HUST" />
-  //       </Link>
-  //     </div>
-  //   </div>
-
-  //   {!isAuthed && (
-  //     <div className="flex gap-2">
-  //       <Link className="btn" to={"/login"}>
-  //         Log in
-  //       </Link>
-  //       <Link className="btn" to={"/signup"}>
-  //         Sign up
-  //       </Link>
-  //     </div>
-  //   )}
-
-  //   {isAuthed && (
-  //     <div className="flex gap-8 items-center">
-  //       {role === 1 && (
-  //         <div>
-  //           <Link to={"/admin"}>Admin</Link>
-  //         </div>
-  //       )}
-  //       {role === 0 && (
-  //         <div>
-  //           <Link to={"/chat"}>
-  //             <ChatIcon />
-  //           </Link>
-  //         </div>
-  //       )}
-  //       <button className="btn" onClick={(e) => handleLogout(e)}>
-  //         Logout
-  //       </button>
-  //     </div>
-  //   )}
-  // </div>
-  // );
 };
 
 export default NavigationBar;

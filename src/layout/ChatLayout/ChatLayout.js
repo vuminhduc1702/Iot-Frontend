@@ -29,10 +29,6 @@ const ChatLayout = ({ children }) => {
     <MainLayout>
       <div className="chat">
         <div className="chat-list">
-          {/* <div className="back-btn">
-            <BackIcon />
-            <Link to={"/"}>Back to home page</Link>
-          </div> */}
           {chatList.length > 0 &&
             chatList.map((chat) => (
               <div key={chat.iotClientId}>
