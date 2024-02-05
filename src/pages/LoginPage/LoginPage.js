@@ -12,21 +12,22 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const form = useForm();
   const { register, control, handleSubmit, formState } = form;
+  const [otp, setOtp] = useState();
   const { errors } = formState;
 
-  const onSubmit = (data) => {
-    AuthenticationService.login(data)
-      .then((response) => {
-        console.log(response.data);
-        localStorage.setItem("accessToken", response.data.accessToken);
-        setIsAuthed(true);
-        checkRole(localStorage.getItem("accessToken"));
-        setRedirect(true);
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
-  };
+  // const onSubmit = (data) => {
+  //   AuthenticationService.login(data)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       localStorage.setItem("accessToken", response.data.accessToken);
+  //       setIsAuthed(true);
+  //       checkRole(localStorage.getItem("accessToken"));
+  //       setRedirect(true);
+  //     })
+  //     .catch((error) => {
+  //       toast.error(error.message);
+  //     });
+  // };
 
   if (redirect) {
     if (role === 1) {
@@ -35,6 +36,32 @@ const LoginPage = () => {
       navigate("/chat");
     }
   }
+
+  const onSubmit = (data) => {
+    if (!otp) {
+      setTimeout(function () {
+        const response = {
+          valid: true,
+          otp: Math.floor(100000 + Math.random() * 900000),
+        };
+        setOtp(response.otp);
+      }, 1000);
+    } else {
+      console.log(typeof otp);
+      console.log(typeof data.otp);
+      if (data.otp != otp) {
+        document.getElementById("noti").innerHTML = "Wrong OTP";
+        return;
+      } else {
+        document.getElementById("noti").innerHTML = JSON.stringify(data);
+        return;
+      }
+    }
+  };
+
+  // const getOtp = () => {
+  //   console.log(data);
+  // };
 
   return (
     <MainLayout>
@@ -69,12 +96,30 @@ const LoginPage = () => {
             })}
           />
           <p className="error">{errors.password?.message}</p>
-          <div className="flex flex-col justify-center items-center pb-4 border-b border-gray-300">
+          {!otp && (
             <button className="btn my-4 bg-black w-96 py-2 text-white font-bold">
-              Log in
+              Get OTP
             </button>
-          </div>
+          )}
+          {otp && (
+            <div>
+              <h1>Your OTP is: {otp}</h1>
+              <input
+                className="input input-bordered w-96 max-w-md"
+                type="number"
+                {...register("otp", { required: { value: true } })}
+                minLength={6}
+                maxLength={6}
+              />
+              <div className="flex flex-col justify-center items-center pb-4 border-b border-gray-300">
+                <button className="btn my-4 bg-black w-96 py-2 text-white font-bold">
+                  Log in
+                </button>
+              </div>
+            </div>
+          )}
         </form>
+        <div id="noti"></div>
         <span className="mt-4">
           Don't have an account?{" "}
           <Link to={"/signup"} className="font-bold text-black underline">
